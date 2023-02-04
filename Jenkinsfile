@@ -6,9 +6,9 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/gitarunhub/jenkin_sonar_nexus.git'
             }
         }
-        stage('build') {
+        stage('sh 'mvn test'') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn test'
             }
         }
 
