@@ -11,5 +11,10 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-   }
+        stage(docker_image_build) { 
+            steps {
+                sh 'docker build -t uber .'
+            }
+        }
+    }
 }
