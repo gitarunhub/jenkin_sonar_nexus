@@ -15,6 +15,8 @@ pipeline {
         stage(docker_image_build) { 
             steps {
                 sh 'sudo docker build -t ${JOB_NAME}.v1:${BUILD_ID} .'
+                sh 'sudo docker image tag ${JOB_NAME}.v1:${BUILD_ID} aruntvm199/${JOB_NAME}.v1:${BUILD_ID}'
+                sh 'sudo docker image tag ${JOB_NAME}.v1:${BUILD_ID} aruntvm199/${JOB_NAME}.v1:latest'
             }
         }
     }
