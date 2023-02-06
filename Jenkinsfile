@@ -19,5 +19,18 @@ pipeline {
                 sh 'sudo docker image tag ${JOB_NAME}.v1:${BUILD_ID} aruntvm199/${JOB_NAME}.v1:latest'
             }
         }
+        stage(docker_login) {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'docker_credentials', variable: 'docker_credential')]) {
+                        sh 'sudo docker login -u aruntvm1999 -p ${docker_credential}'
+                        sh 'sudo docker image push aruntvm199/${JOB_NAME}.v1:latest '
+                    }
+
+
+                   } 
+                }
+            }
+        }
     }
 }
