@@ -24,7 +24,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'docker_credentials', variable: 'docker_credential')]) {
                         sh 'sudo docker login -u aruntvm1999 -p ${docker_credential}'
-                        sh 'sudo docker image push aruntvm199/${JOB_NAME}.v1:latest '
+                        sh 'sudo docker image push aruntvm1999/${JOB_NAME}.v1:latest '
                     }
 
 
