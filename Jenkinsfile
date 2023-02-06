@@ -11,9 +11,10 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+
         stage(docker_image_build) { 
             steps {
-                sh 'sudo docker build -t uber .'
+                sh 'sudo docker build -t $JOB_NAME:v1:$BUILD_ID .'
             }
         }
     }
