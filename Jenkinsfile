@@ -13,7 +13,7 @@ pipeline {
         }
         stage(docker_image_build) { 
             steps {
-                sh 'docker build -t uber .'
+                sh 'sudo docker build -t uber .'
             }
         }
     }
