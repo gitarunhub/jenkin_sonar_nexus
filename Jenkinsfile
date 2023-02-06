@@ -30,7 +30,12 @@ pipeline {
                 }
               }
             }
-        }  
+        } 
+        stage('permission') {
+            steps {
+                sh 'sudo chmod 777 Dockerfile'
+            }
+        } 
         stage('Docker Image') {
             steps {
                 sh 'sudo docker build -t uber .'
