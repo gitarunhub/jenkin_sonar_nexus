@@ -1,7 +1,6 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'CHOICE', choices: ['create', 'destroy'], description: 'Pick something')
         string(name: 'aws_region', defaultValue: 'ap-south-1', description: 'aws_region')
         string(name: 'cluster_name', defaultValue: 'demo_cluster', description: 'eks_clustername')
 
