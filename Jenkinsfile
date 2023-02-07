@@ -5,11 +5,16 @@ pipeline {
         string(name: 'cluster_name', defaultValue: 'demo_cluster', description: 'eks_clustername')
 
     }
-    environment {
-        ACESS_KEY = Credentials('access_key_ID')
-        SECRET_KEY = Credentials('secret_access_key')
-    }
+    
     stages {
+        stage(environment) {
+            environment {
+                ACESS_KEY = Credentials('access_key_ID')
+                SECRET_KEY = Credentials('secret_access_key')
+
+        
+    }
+        }
         stage('gitcheckout') {
             steps {
                 git branch: 'main', url: 'https://github.com/gitarunhub/jenkin_sonar_nexus.git'
