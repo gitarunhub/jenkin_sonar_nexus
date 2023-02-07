@@ -1,6 +1,7 @@
 pipeline {
     agent any
     parameters {
+        choice(name: 'option', choices: ["create", "destroy"], description: "to create or destroy cluster")
         string(name: 'aws_region', defaultValue: 'ap-south-1', description: 'aws_region')
         string(name: 'cluster_name', defaultValue: 'demo_cluster', description: 'eks_clustername')
 
