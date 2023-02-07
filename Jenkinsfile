@@ -1,14 +1,14 @@
 pipeline {
     agent any
-    //parameters {
-      //  string(name: 'aws_region', defaultValue: 'ap-south-1', description: 'aws_region')
-        //string(name: 'cluster_name', defaultValue: 'demo_cluster', description: 'eks_clustername')
+    parameters {
+        string(name: 'aws_region', defaultValue: 'ap-south-1', description: 'aws_region')
+        string(name: 'cluster_name', defaultValue: 'demo_cluster', description: 'eks_clustername')
 
-    //}
-    //environment {
-      //  ACESS_KEY = Credentials('access_key_ID')
-        //SECRET_KEY = Credentials('secret_access_key')
-    //}
+    }
+    environment {
+        ACESS_KEY = Credentials('access_key_ID')
+        SECRET_KEY = Credentials('secret_access_key')
+    }
     stages {
         stage('gitcheckout') {
             steps {
@@ -16,15 +16,15 @@ pipeline {
             }
         
         }
-       // stage('aws_connect') {
-         //   steps {
-           //     sh """
-             //   aws configure set aws_access_key_id "$ACESS_KEY"
-               // aws configure set aws_secret_access_key "$SECRET_KEY"
-                //aws configure set region ""
-                //aws eks --region ${params.aws_region} update-kubeconfig --name ${params.cluster_name}
-                //"""
-        //    }
-      //  }
+        stage('aws_connect') {
+            steps {
+                sh """
+                aws configure set aws_access_key_id "$ACESS_KEY"
+                aws configure set aws_secret_access_key "$SECRET_KEY"
+                aws configure set region ""
+                aws eks --region ${params.aws_region} update-kubeconfig --name ${params.cluster_name}
+                """
+           }
+        }
     }
 }
