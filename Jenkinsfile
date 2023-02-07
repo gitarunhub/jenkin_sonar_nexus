@@ -29,5 +29,28 @@ pipeline {
                 """
            }
         }
+         stage(eks_create) {
+            when {
+                expression { params.option == "create"}
+            }
+            steps {
+                script {
+                    def apply = false
+                    try {
+                        input message: 'please confirm', ok: 'Ready to apply'
+                        apply = true
+                    }
+                    catch(err) {
+                        apply = false
+                        CurrentBuild.result= "UNSTABLE"
+                    }
+                    if(apply) {
+                        sh """
+                        kebectl apply -f .
+                        """
+                    }
+                }
+            }
+         }
     }
 }
