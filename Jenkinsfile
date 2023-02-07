@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'CHOICE', choices: ['create', 'destroy'] description: 'Pick something')
+        choice(name: 'CHOICE', choices: ['create', 'destroy'], description: 'Pick something')
     }
     stages {
         stage('gitcheckout') {
