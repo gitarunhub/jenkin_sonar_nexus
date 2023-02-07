@@ -17,7 +17,7 @@ pipeline {
             }
         
         }
-        stage(aws_connect) {
+        stage('aws_connect') {
             steps {
                 sh """
                 aws configure set aws_access_key_id "$ACESS_KEY"
